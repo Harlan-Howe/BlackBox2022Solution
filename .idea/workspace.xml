@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BlackBoxPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EdgeBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EdgeBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MysteryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MysteryBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +112,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658346749855</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Detecting clicks on board; toggling pencil status on Mystery boxes clicked.">
+      <created>1658347817694</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1658347817694</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Changed constants to static variables so outside classes could see them.">
+      <created>1658347844625</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1658347844625</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -126,6 +137,8 @@
     <MESSAGE value="Removed extra black color call that overrode gray in default drawSelf behavior." />
     <MESSAGE value="Wrote Constructor &amp; paintComponent methods." />
     <MESSAGE value="Adjusteded CELL_SIZE to 60 pixels" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusteded CELL_SIZE to 60 pixels" />
+    <MESSAGE value="Detecting clicks on board; toggling pencil status on Mystery boxes clicked." />
+    <MESSAGE value="Changed constants to static variables so outside classes could see them." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed constants to static variables so outside classes could see them." />
   </component>
 </project>

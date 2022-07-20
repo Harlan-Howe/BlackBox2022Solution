@@ -8,8 +8,16 @@ public class BlackBoxPanel extends JPanel implements MouseListener
 
     private BlackBoxCell[][] myGrid;
 
-    private final int leftMargin = 20;
-    private final int topMargin = 20;
+    private final int LEFT_MARGIN = 20;
+    private final int RIGHT_MARGIN = 20;
+
+    private final int DIRECTION_RIGHT = 0;
+    private final int DIRECTION_DOWN = 1;
+    private final int DIRECTION_LEFT = 2;
+    private final int DIRECTION_UP = 3;
+
+    //                               RGT   DWN    LFT    UP
+    private final int[][] DELTAS = {{1,0},{0,1},{-1,0},{0,-1}};
 
 
     public BlackBoxPanel()
@@ -22,12 +30,12 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         for (int i=1; i<=8; i++)
         {
             for (int j = 1; j <= 8; j++)
-                myGrid[j][i] = new MysteryBox(leftMargin + i * BlackBoxCell.CELL_SIZE, topMargin + j * BlackBoxCell.CELL_SIZE);
+                myGrid[j][i] = new MysteryBox(LEFT_MARGIN + i * BlackBoxCell.CELL_SIZE, RIGHT_MARGIN + j * BlackBoxCell.CELL_SIZE);
 
             for (int k = 0; k <= 9; k += 9)
             {
-                myGrid[i][k] = new EdgeBox(leftMargin + k * BlackBoxCell.CELL_SIZE, topMargin + i * BlackBoxCell.CELL_SIZE);
-                myGrid[k][i] = new EdgeBox(leftMargin + i * BlackBoxCell.CELL_SIZE, topMargin + k * BlackBoxCell.CELL_SIZE);
+                myGrid[i][k] = new EdgeBox(LEFT_MARGIN + k * BlackBoxCell.CELL_SIZE, RIGHT_MARGIN + i * BlackBoxCell.CELL_SIZE);
+                myGrid[k][i] = new EdgeBox(LEFT_MARGIN + i * BlackBoxCell.CELL_SIZE, RIGHT_MARGIN + k * BlackBoxCell.CELL_SIZE);
             }
         }
 
@@ -73,8 +81,8 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     @Override
     public void mouseReleased(MouseEvent e)
     {
-        int r = (e.getY()-topMargin)/BlackBoxCell.CELL_SIZE;
-        int c = (e.getX()-leftMargin)/BlackBoxCell.CELL_SIZE;
+        int r = (e.getY()- RIGHT_MARGIN)/BlackBoxCell.CELL_SIZE;
+        int c = (e.getX()- LEFT_MARGIN)/BlackBoxCell.CELL_SIZE;
         if (r<0 || r>9 || c<0 || c>9)
             return;
         if (((r>0)&&(r<9))||((c>0))&&(c<9))
