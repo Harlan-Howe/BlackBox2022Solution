@@ -3,7 +3,9 @@ import java.awt.*;
 public interface  BlackBoxCell
 {
 
-    public final int STATUS_BLANK = 0;
+    final int STATUS_BLANK = 0;
+
+    final int CELL_SIZE = 30;
 
 
     public void drawSelf(Graphics g);
