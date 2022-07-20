@@ -3,9 +3,9 @@ import java.awt.*;
 public class EdgeBox implements BlackBoxCell
 {
 
-    public final int STATUS_HIT = 1;
-    public final int STATUS_REFLECT = 2;
-    public final int STATUS_LABEL = 3;
+    public static final int STATUS_HIT = 1;
+    public static final int STATUS_REFLECT = 2;
+    public static final int STATUS_LABEL = 3;
 
     private int myStatus;
     private String myLabel;
@@ -48,9 +48,9 @@ public class EdgeBox implements BlackBoxCell
             g.setFont(edgeFont);
             int width = g.getFontMetrics().stringWidth(myLabel);
             g.setColor(Color.WHITE);
-            g.drawString(myLabel,xPos+CELL_SIZE/2-width/2+1, yPos+CELL_SIZE-2);
+            g.drawString(myLabel,xPos+CELL_SIZE/2-width/2+1, yPos+CELL_SIZE-4);
             g.setColor(Color.BLACK);
-            g.drawString(myLabel,xPos+CELL_SIZE/2-width/2, yPos+CELL_SIZE-3);
+            g.drawString(myLabel,xPos+CELL_SIZE/2-width/2, yPos+CELL_SIZE-5);
         }
 
     }

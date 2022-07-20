@@ -3,8 +3,8 @@ import java.awt.*;
 public class MysteryBox implements BlackBoxCell
 {
 
-    public final int STATUS_REVEALED = 1;
-    public final int STATUS_PENCILLED = 2;
+    public static final int STATUS_REVEALED = 1;
+    public static final int STATUS_PENCILLED = 2;
 
     private int myStatus;
     private int xPos, yPos;
