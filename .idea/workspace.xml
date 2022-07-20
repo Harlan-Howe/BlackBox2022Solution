@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/BlackBoxCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MysteryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MysteryBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EdgeBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EdgeBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +57,27 @@
       <option name="project" value="LOCAL" />
       <updated>1658344642347</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Wrote constructor, get/set and drawSelf methods">
+      <created>1658345255551</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658345255551</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added CELL_SIZE constant">
+      <created>1658345270420</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658345270420</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="Wrote constructor, get/set and drawSelf methods" />
+    <MESSAGE value="Added CELL_SIZE constant" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added CELL_SIZE constant" />
   </component>
 </project>
