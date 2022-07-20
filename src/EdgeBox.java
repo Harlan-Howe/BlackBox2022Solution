@@ -28,7 +28,6 @@ public class EdgeBox implements BlackBoxCell
     public void drawSelf(Graphics g)
     {
         g.setColor(Color.GRAY);
-        g.setColor(Color.BLACK);
         g.fillRect(xPos, yPos, CELL_SIZE, CELL_SIZE);
         g.setColor(Color.WHITE);
         g.drawRect(xPos, yPos, CELL_SIZE, CELL_SIZE);
