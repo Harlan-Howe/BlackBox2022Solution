@@ -5,7 +5,7 @@ public interface  BlackBoxCell
 
     final int STATUS_BLANK = 0;
 
-    final int CELL_SIZE = 30;
+    final int CELL_SIZE = 60;
 
 
     public void drawSelf(Graphics g);
