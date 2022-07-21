@@ -8,9 +8,10 @@ public class BlackBoxPanel extends JPanel implements MouseListener
 
     private BlackBoxCell[][] myGrid;
     private char latestLabel;
+    private int numGuesses;
 
-    private final int LEFT_MARGIN = 20;
-    private final int RIGHT_MARGIN = 20;
+    private final int LEFT_MARGIN = 100;
+    private final int TOP_MARGIN = 100;
 
     private final int DIRECTION_RIGHT = 0;
     private final int DIRECTION_DOWN = 1;
@@ -32,12 +33,12 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         for (int i=1; i<=8; i++)
         {
             for (int j = 1; j <= 8; j++)
-                myGrid[j][i] = new MysteryBox(LEFT_MARGIN + i * BlackBoxCell.CELL_SIZE, RIGHT_MARGIN + j * BlackBoxCell.CELL_SIZE);
+                myGrid[j][i] = new MysteryBox(LEFT_MARGIN + i * BlackBoxCell.CELL_SIZE, TOP_MARGIN + j * BlackBoxCell.CELL_SIZE);
 
             for (int k = 0; k <= 9; k += 9)
             {
-                myGrid[i][k] = new EdgeBox(LEFT_MARGIN + k * BlackBoxCell.CELL_SIZE, RIGHT_MARGIN + i * BlackBoxCell.CELL_SIZE);
-                myGrid[k][i] = new EdgeBox(LEFT_MARGIN + i * BlackBoxCell.CELL_SIZE, RIGHT_MARGIN + k * BlackBoxCell.CELL_SIZE);
+                myGrid[i][k] = new EdgeBox(LEFT_MARGIN + k * BlackBoxCell.CELL_SIZE, TOP_MARGIN + i * BlackBoxCell.CELL_SIZE);
+                myGrid[k][i] = new EdgeBox(LEFT_MARGIN + i * BlackBoxCell.CELL_SIZE, TOP_MARGIN + k * BlackBoxCell.CELL_SIZE);
             }
         }
 
@@ -113,6 +114,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             }
             ((MysteryBox) myGrid[r1][c1]).setHasBall(true);
         }
+        numGuesses = 0;
         repaint();
 
     }
@@ -120,7 +122,13 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     @Override
     public void paintComponent(Graphics g)
     {
+
         super.paintComponent(g);
+
+        g.setColor(Color.BLACK);
+        g.drawString("Number of Shots Taken: "+numGuesses, LEFT_MARGIN, TOP_MARGIN-5);
+
+
         for (int i=0; i<10; i++)
             for (int j=0; j<10; j++)
                 if (myGrid[i][j] != null)
@@ -142,7 +150,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     @Override
     public void mouseReleased(MouseEvent e)
     {
-        int r = (e.getY()- RIGHT_MARGIN)/BlackBoxCell.CELL_SIZE;
+        int r = (e.getY()- TOP_MARGIN)/BlackBoxCell.CELL_SIZE;
         int c = (e.getX()- LEFT_MARGIN)/BlackBoxCell.CELL_SIZE;
         if (r<0 || r>9 || c<0 || c>9)
             return;
@@ -177,6 +185,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     {
         if (myGrid[startPos[0]][startPos[1]].getStatus() != BlackBoxCell.STATUS_BLANK)
             return;
+        numGuesses++;
         int[] exitPos = findExitPoint(startPos,dir);
 
         if (exitPos == null)
