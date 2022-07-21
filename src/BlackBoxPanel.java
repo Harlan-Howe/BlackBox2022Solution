@@ -41,30 +41,9 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             }
         }
 
-//        myGrid[0][1].setStatus(EdgeBox.STATUS_HIT);
-//        myGrid[0][2].setStatus(EdgeBox.STATUS_REFLECT);
-//        myGrid[0][3].setStatus(EdgeBox.STATUS_LABEL);
-//        ((EdgeBox)myGrid[0][3]).setMyLabel("");
-//        myGrid[0][4].setStatus(EdgeBox.STATUS_LABEL);
-//        ((EdgeBox)myGrid[0][4]).setMyLabel("a");
-//        myGrid[0][5].setStatus(EdgeBox.STATUS_LABEL);
-//        ((EdgeBox)myGrid[0][5]).setMyLabel("bcd");
-//
-//        myGrid[1][1].setStatus(MysteryBox.STATUS_PENCILLED);
-//        myGrid[2][2].setStatus(MysteryBox.STATUS_REVEALED);
+        reset();
 
-        for (int i=0; i<4; i++)
-        {
-            int r1 = (int) (8 * Math.random() + 1);
-            int c1 = (int) (8 * Math.random() + 1);
-            if (((MysteryBox)myGrid[r1][c1]).hasBall())
-            {
-                i--;
-                continue;
-            }
-            ((MysteryBox) myGrid[r1][c1]).setHasBall(true);
-//            ((MysteryBox) myGrid[r1][c1]).setStatus((MysteryBox.STATUS_REVEALED));
-        }
+
     }
 
 
@@ -103,6 +82,32 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             for (int c=1; c<=8; c++)
                 ((MysteryBox)myGrid[r][c]).setShouldShowBall(true);
         repaint();
+    }
+
+    public void reset()
+    {
+        for (int i=0; i<4; i++)
+        {
+            int r1 = (int) (8 * Math.random() + 1);
+            int c1 = (int) (8 * Math.random() + 1);
+            if (((MysteryBox)myGrid[r1][c1]).hasBall())
+            {
+                i--;
+                continue;
+            }
+            ((MysteryBox) myGrid[r1][c1]).setHasBall(true);
+        }
+        for (int r=0; r<=9; r++)
+            for (int c=0; c<=9; c++)
+            {
+                if (myGrid[r][c] == null)
+                    continue;
+                myGrid[r][c].setStatus(BlackBoxCell.STATUS_BLANK);
+                if (myGrid[r][c] instanceof MysteryBox)
+                    ((MysteryBox) myGrid[r][c]).setShouldShowBall(true);
+                else
+                    ((EdgeBox) myGrid[r][c]).setMyLabel("");
+            }
     }
 
     @Override

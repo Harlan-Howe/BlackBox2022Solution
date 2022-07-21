@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlackBoxFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BlackBoxPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MysteryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MysteryBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +134,35 @@
       <option name="project" value="LOCAL" />
       <updated>1658348563706</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added button panel with reveal button.">
+      <created>1658423462698</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1658423462698</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added hasBall and shouldShowBall flags, and updated paintComponent to reflect this. (Known error paintComponent isn't checking hasBall.)&#10;Repurposed STATUS_REVEALED to be STATUS_DEBUG.">
+      <created>1658423568006</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1658423568006</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Clicking on an edge cell now runs the path and updates that edge cell. Several new methods to perform this.&#10;Added a method &quot;revealAllBalls.&quot;">
+      <created>1658423616650</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1658423616650</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixed error where all MysteryBoxes showed a ball regardless of hasBall flag.">
+      <created>1658423655568</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1658423655568</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -150,6 +176,10 @@
     <MESSAGE value="Detecting clicks on board; toggling pencil status on Mystery boxes clicked." />
     <MESSAGE value="Changed constants to static variables so outside classes could see them." />
     <MESSAGE value="Added directional Constants and deltas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added directional Constants and deltas" />
+    <MESSAGE value="Added button panel with reveal button." />
+    <MESSAGE value="Added hasBall and shouldShowBall flags, and updated paintComponent to reflect this. (Known error paintComponent isn't checking hasBall.)&#10;Repurposed STATUS_REVEALED to be STATUS_DEBUG." />
+    <MESSAGE value="Clicking on an edge cell now runs the path and updates that edge cell. Several new methods to perform this.&#10;Added a method &quot;revealAllBalls.&quot;" />
+    <MESSAGE value="fixed error where all MysteryBoxes showed a ball regardless of hasBall flag." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed error where all MysteryBoxes showed a ball regardless of hasBall flag." />
   </component>
 </project>
