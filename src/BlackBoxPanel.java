@@ -26,7 +26,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         super();
         setBackground(Color.LIGHT_GRAY);
         addMouseListener(this);
-        latestLabel = 'A';
+
         myGrid = new BlackBoxCell[10][10];
 
         for (int i=1; i<=8; i++)
@@ -87,7 +87,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     public void reset()
     {
 
-
+        latestLabel = 'A';
         for (int r=0; r<=9; r++)
             for (int c=0; c<=9; c++)
             {
