@@ -133,7 +133,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
 
         if (revealedMode)
         {
-            g.setColor(Color.PINK);
+            g.setColor(new Color(200,200,255));
             g.fillRect(LEFT_MARGIN-3, TOP_MARGIN-3, 10*BlackBoxCell.CELL_SIZE+6, 10*BlackBoxCell.CELL_SIZE+6);
         }
 
@@ -158,6 +158,8 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     @Override
     public void mouseReleased(MouseEvent e)
     {
+        if (revealedMode)
+            return;
         int r = (e.getY()- TOP_MARGIN)/BlackBoxCell.CELL_SIZE;
         int c = (e.getX()- LEFT_MARGIN)/BlackBoxCell.CELL_SIZE;
         if (r<0 || r>9 || c<0 || c>9)
