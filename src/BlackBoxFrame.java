@@ -31,6 +31,10 @@ public class BlackBoxFrame extends JFrame implements ActionListener
         revealButton.addActionListener(this);
         panel.add(revealButton);
 
+        resetButton = new JButton("Reset");
+        resetButton.addActionListener(this);
+        panel.add(resetButton);
+
         return panel;
     }
 
