@@ -86,6 +86,22 @@ public class BlackBoxPanel extends JPanel implements MouseListener
 
     public void reset()
     {
+
+
+        for (int r=0; r<=9; r++)
+            for (int c=0; c<=9; c++)
+            {
+                if (myGrid[r][c] == null)
+                    continue;
+                myGrid[r][c].setStatus(BlackBoxCell.STATUS_BLANK);
+                if (myGrid[r][c] instanceof MysteryBox)
+                {
+                    ((MysteryBox) myGrid[r][c]).setShouldShowBall(false);
+                    ((MysteryBox) myGrid[r][c]).setHasBall(false);
+                }
+                else
+                    ((EdgeBox) myGrid[r][c]).setMyLabel("");
+            }
         for (int i=0; i<4; i++)
         {
             int r1 = (int) (8 * Math.random() + 1);
@@ -97,17 +113,8 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             }
             ((MysteryBox) myGrid[r1][c1]).setHasBall(true);
         }
-        for (int r=0; r<=9; r++)
-            for (int c=0; c<=9; c++)
-            {
-                if (myGrid[r][c] == null)
-                    continue;
-                myGrid[r][c].setStatus(BlackBoxCell.STATUS_BLANK);
-                if (myGrid[r][c] instanceof MysteryBox)
-                    ((MysteryBox) myGrid[r][c]).setShouldShowBall(false);
-                else
-                    ((EdgeBox) myGrid[r][c]).setMyLabel("");
-            }
+        repaint();
+
     }
 
     @Override

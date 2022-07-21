@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BlackBoxPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +161,35 @@
       <option name="project" value="LOCAL" />
       <updated>1658423655568</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Created reset() method.&#10;Moved ball randomization from constructor to reset and now call reset from constructor.">
+      <created>1658424141799</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1658424141799</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added resetButton to UI">
+      <created>1658424180677</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1658424180677</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Connected resetButton action to myPanel's reset() method.">
+      <created>1658424213571</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1658424213571</updated>
+    </task>
+    <task id="LOCAL-00018" summary="error fix: all balls were starting revealed after reset; now all balls are hidden after reset.">
+      <created>1658424291346</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1658424291347</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -180,6 +207,10 @@
     <MESSAGE value="Added hasBall and shouldShowBall flags, and updated paintComponent to reflect this. (Known error paintComponent isn't checking hasBall.)&#10;Repurposed STATUS_REVEALED to be STATUS_DEBUG." />
     <MESSAGE value="Clicking on an edge cell now runs the path and updates that edge cell. Several new methods to perform this.&#10;Added a method &quot;revealAllBalls.&quot;" />
     <MESSAGE value="fixed error where all MysteryBoxes showed a ball regardless of hasBall flag." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed error where all MysteryBoxes showed a ball regardless of hasBall flag." />
+    <MESSAGE value="Created reset() method.&#10;Moved ball randomization from constructor to reset and now call reset from constructor." />
+    <MESSAGE value="Added resetButton to UI" />
+    <MESSAGE value="Connected resetButton action to myPanel's reset() method." />
+    <MESSAGE value="error fix: all balls were starting revealed after reset; now all balls are hidden after reset." />
+    <option name="LAST_COMMIT_MESSAGE" value="error fix: all balls were starting revealed after reset; now all balls are hidden after reset." />
   </component>
 </project>
