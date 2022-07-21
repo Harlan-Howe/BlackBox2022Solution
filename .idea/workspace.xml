@@ -204,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658424753312</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Adjusted margins.&#10;Added number of shots taken counter and indicator">
+      <created>1658426351602</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1658426351602</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -228,6 +235,7 @@
     <MESSAGE value="error fix: all balls were starting revealed after reset; now all balls are hidden after reset." />
     <MESSAGE value="Fixed error: reset was not removing existing balls; just adding more." />
     <MESSAGE value="moved latestLabel = 'A' from constructor to reset, so that it resets on replay." />
-    <option name="LAST_COMMIT_MESSAGE" value="moved latestLabel = 'A' from constructor to reset, so that it resets on replay." />
+    <MESSAGE value="Adjusted margins.&#10;Added number of shots taken counter and indicator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusted margins.&#10;Added number of shots taken counter and indicator" />
   </component>
 </project>

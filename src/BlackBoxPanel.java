@@ -9,6 +9,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     private BlackBoxCell[][] myGrid;
     private char latestLabel;
     private int numGuesses;
+    private boolean revealedMode;
 
     private final int LEFT_MARGIN = 100;
     private final int TOP_MARGIN = 100;
@@ -82,6 +83,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         for (int r=1; r<=8; r++)
             for (int c=1; c<=8; c++)
                 ((MysteryBox)myGrid[r][c]).setShouldShowBall(true);
+        revealedMode = true;
         repaint();
     }
 
@@ -95,7 +97,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
                 if (myGrid[r][c] == null)
                     continue;
                 myGrid[r][c].setStatus(BlackBoxCell.STATUS_BLANK);
-                if (myGrid[r][c] instanceof MysteryBox)
+                if (isMysteryBox(r,c))
                 {
                     ((MysteryBox) myGrid[r][c]).setShouldShowBall(false);
                     ((MysteryBox) myGrid[r][c]).setHasBall(false);
@@ -115,6 +117,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             ((MysteryBox) myGrid[r1][c1]).setHasBall(true);
         }
         numGuesses = 0;
+        revealedMode = false;
         repaint();
 
     }
@@ -126,8 +129,13 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         super.paintComponent(g);
 
         g.setColor(Color.BLACK);
-        g.drawString("Number of Shots Taken: "+numGuesses, LEFT_MARGIN, TOP_MARGIN-5);
+        g.drawString("Number of Shots Taken: "+numGuesses, LEFT_MARGIN, TOP_MARGIN-10);
 
+        if (revealedMode)
+        {
+            g.setColor(Color.PINK);
+            g.fillRect(LEFT_MARGIN-3, TOP_MARGIN-3, 10*BlackBoxCell.CELL_SIZE+6, 10*BlackBoxCell.CELL_SIZE+6);
+        }
 
         for (int i=0; i<10; i++)
             for (int j=0; j<10; j++)
@@ -236,8 +244,9 @@ public class BlackBoxPanel extends JPanel implements MouseListener
                 continue;
             }
             p = frontPoint;
-            if (! isMysteryBox(frontPoint[0],frontPoint[1]))
+            if (! isMysteryBox(p))
                 return p;
+            //((MysteryBox)myGrid[p[0]][p[1]]).setStatus(MysteryBox.STATUS_DEBUG_SHOW);
         }
     }
 
