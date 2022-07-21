@@ -7,6 +7,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
 {
 
     private BlackBoxCell[][] myGrid;
+    private char latestLabel;
 
     private final int LEFT_MARGIN = 20;
     private final int RIGHT_MARGIN = 20;
@@ -17,7 +18,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     private final int DIRECTION_UP = 3;
 
     //                               RGT   DWN    LFT    UP
-    private final int[][] DELTAS = {{1,0},{0,1},{-1,0},{0,-1}};
+    private final int[][] DELTAS = {{0,1},{1,0},{0,-1},{-1,0}};
 
 
     public BlackBoxPanel()
@@ -25,6 +26,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         super();
         setBackground(Color.LIGHT_GRAY);
         addMouseListener(this);
+        latestLabel = 'A';
         myGrid = new BlackBoxCell[10][10];
 
         for (int i=1; i<=8; i++)
@@ -39,21 +41,68 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             }
         }
 
-        myGrid[0][1].setStatus(EdgeBox.STATUS_HIT);
-        myGrid[0][2].setStatus(EdgeBox.STATUS_REFLECT);
-        myGrid[0][3].setStatus(EdgeBox.STATUS_LABEL);
-        ((EdgeBox)myGrid[0][3]).setMyLabel("");
-        myGrid[0][4].setStatus(EdgeBox.STATUS_LABEL);
-        ((EdgeBox)myGrid[0][4]).setMyLabel("a");
-        myGrid[0][5].setStatus(EdgeBox.STATUS_LABEL);
-        ((EdgeBox)myGrid[0][5]).setMyLabel("bcd");
+//        myGrid[0][1].setStatus(EdgeBox.STATUS_HIT);
+//        myGrid[0][2].setStatus(EdgeBox.STATUS_REFLECT);
+//        myGrid[0][3].setStatus(EdgeBox.STATUS_LABEL);
+//        ((EdgeBox)myGrid[0][3]).setMyLabel("");
+//        myGrid[0][4].setStatus(EdgeBox.STATUS_LABEL);
+//        ((EdgeBox)myGrid[0][4]).setMyLabel("a");
+//        myGrid[0][5].setStatus(EdgeBox.STATUS_LABEL);
+//        ((EdgeBox)myGrid[0][5]).setMyLabel("bcd");
+//
+//        myGrid[1][1].setStatus(MysteryBox.STATUS_PENCILLED);
+//        myGrid[2][2].setStatus(MysteryBox.STATUS_REVEALED);
 
-        myGrid[1][1].setStatus(MysteryBox.STATUS_PENCILLED);
-        myGrid[2][2].setStatus(MysteryBox.STATUS_REVEALED);
+        for (int i=0; i<4; i++)
+        {
+            int r1 = (int) (8 * Math.random() + 1);
+            int c1 = (int) (8 * Math.random() + 1);
+            if (((MysteryBox)myGrid[r1][c1]).hasBall())
+            {
+                i--;
+                continue;
+            }
+            ((MysteryBox) myGrid[r1][c1]).setHasBall(true);
+//            ((MysteryBox) myGrid[r1][c1]).setStatus((MysteryBox.STATUS_REVEALED));
+        }
+    }
 
 
+    public int[] getPositionInFrontOf(int[] pos, int direction)
+    {
+        int[] p = {pos[0],pos[1]};
+        p[0] += DELTAS[direction][0];
+        p[1] += DELTAS[direction][1];
+        return p;
+    }
+
+    public int[] getPositionFrontRightOf(int[] pos, int direction)
+    {
+        return getPositionInFrontOf(getPositionInFrontOf(pos,direction),(direction+1)%4);
+    }
+
+    public int[] getPositionFrontLeftOf(int[] pos, int direction)
+    {
+        return getPositionInFrontOf(getPositionInFrontOf(pos, direction),(direction+3)%4);
+    }
 
 
+    public boolean isMysteryBox(int r, int c)
+    {
+        return r>0 && r<9 && c>0 && c<9;
+    }
+
+    public boolean isMysteryBox(int[] p)
+    {
+        return isMysteryBox(p[0],p[1]);
+    }
+
+    public void revealAllBalls()
+    {
+        for (int r=1; r<=8; r++)
+            for (int c=1; c<=8; c++)
+                ((MysteryBox)myGrid[r][c]).setShouldShowBall(true);
+        repaint();
     }
 
     @Override
@@ -85,26 +134,90 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         int c = (e.getX()- LEFT_MARGIN)/BlackBoxCell.CELL_SIZE;
         if (r<0 || r>9 || c<0 || c>9)
             return;
-        if (((r>0)&&(r<9))||((c>0))&&(c<9))
+        if (isMysteryBox(r,c))
+            if (myGrid[r][c].getStatus() == MysteryBox.STATUS_BLANK)
+                myGrid[r][c].setStatus(MysteryBox.STATUS_PENCILLED);
+            else
+                myGrid[r][c].setStatus(MysteryBox.STATUS_BLANK);
+
+        else if (((r>0)&&(r<9))||((c>0))&&(c<9)) // is this an edge box? (eliminating corners)
         {
+            int[] startPos = {r,c};
+            int direction;
+
             if (r==0) // top edge
-                ;
+                direction = DIRECTION_DOWN;
             else if (r==9) // bottom edge
-                ;
+                direction = DIRECTION_UP;
             else if (c==0) // left edge
-                ;
-            else if (c==9) // right edge
-                ;
-            else // mystery boxes
-            {
-                if (myGrid[r][c].getStatus() == MysteryBox.STATUS_BLANK)
-                    myGrid[r][c].setStatus(MysteryBox.STATUS_PENCILLED);
-                else
-                    myGrid[r][c].setStatus(MysteryBox.STATUS_BLANK);
-            }
+                direction = DIRECTION_RIGHT;
+            else // right edge
+                direction = DIRECTION_LEFT;
+
+
+            processShot(startPos, direction);
         }
 
         repaint();
+    }
+
+    public void processShot(int[] startPos, int dir)
+    {
+        if (myGrid[startPos[0]][startPos[1]].getStatus() != BlackBoxCell.STATUS_BLANK)
+            return;
+        int[] exitPos = findExitPoint(startPos,dir);
+
+        if (exitPos == null)
+        {
+            myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_HIT);
+        }
+        else if (startPos[0] == exitPos[0] && startPos[1] == exitPos[1])
+        {
+            myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_REFLECT);
+        }
+        else
+        {
+            myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_LABEL);
+            ((EdgeBox) myGrid[startPos[0]][startPos[1]]).setMyLabel(String.valueOf(latestLabel));
+            myGrid[exitPos[0]][exitPos[1]].setStatus(EdgeBox.STATUS_LABEL);
+            ((EdgeBox) myGrid[exitPos[0]][exitPos[1]]).setMyLabel(String.valueOf(latestLabel));
+
+            latestLabel++;
+        }
+    }
+
+    public int[] findExitPoint(int[] startPos, int dir)
+    {
+        int[] p = startPos;
+        int d = dir;
+        while(true)
+        {
+            int[] frontPoint = getPositionInFrontOf(p,d);
+            if (myGrid[frontPoint[0]][frontPoint[1]] instanceof EdgeBox)
+                return frontPoint;
+            if (((MysteryBox)myGrid[frontPoint[0]][frontPoint[1]]).hasBall())
+                return null; // it's a hit!
+
+            int[] rightFrontPoint = getPositionFrontRightOf(p,d);
+            if (isMysteryBox(rightFrontPoint)&&((MysteryBox)myGrid[rightFrontPoint[0]][rightFrontPoint[1]]).hasBall())
+            {
+                d = (d+3)%4;
+                if (!isMysteryBox(p))
+                    return p;
+                continue;
+            }
+            int[] leftFrontPoint = getPositionFrontLeftOf(p,d);
+            if (isMysteryBox(leftFrontPoint)&&((MysteryBox)myGrid[leftFrontPoint[0]][leftFrontPoint[1]]).hasBall())
+            {
+                d = (d+1)%4;
+                if (!isMysteryBox(p))
+                    return p;
+                continue;
+            }
+            p = frontPoint;
+            if (! isMysteryBox(frontPoint[0],frontPoint[1]))
+                return p;
+        }
     }
 
     @Override
