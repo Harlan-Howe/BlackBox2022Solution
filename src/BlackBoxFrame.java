@@ -45,5 +45,9 @@ public class BlackBoxFrame extends JFrame implements ActionListener
         {
             myPanel.revealAllBalls();
         }
+        if (e.getSource() == resetButton)
+        {
+            myPanel.reset();
+        }
     }
 }
