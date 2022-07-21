@@ -104,7 +104,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
                     continue;
                 myGrid[r][c].setStatus(BlackBoxCell.STATUS_BLANK);
                 if (myGrid[r][c] instanceof MysteryBox)
-                    ((MysteryBox) myGrid[r][c]).setShouldShowBall(true);
+                    ((MysteryBox) myGrid[r][c]).setShouldShowBall(false);
                 else
                     ((EdgeBox) myGrid[r][c]).setMyLabel("");
             }
