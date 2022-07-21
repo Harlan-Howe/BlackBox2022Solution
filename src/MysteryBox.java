@@ -34,7 +34,7 @@ public class MysteryBox implements BlackBoxCell
             g.drawOval(xPos+2, yPos+2, CELL_SIZE-4, CELL_SIZE-4);
         }
 
-        if (shouldShowBall)
+        if (shouldShowBall && hasBall)
         {
             g.setColor(Color.RED);
             g.fillOval(xPos+5, yPos+5, CELL_SIZE-10, CELL_SIZE-10);
