@@ -2,14 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.net.URL;
 
 public class BlackBoxPanel extends JPanel implements MouseListener
 {
 
     private BlackBoxCell[][] myGrid;
     private char latestLabel;
-    private int numGuesses;
+    private int numShots;
     private boolean revealedMode;
     private SoundPlayer soundPlayer;
 
@@ -165,7 +164,10 @@ public class BlackBoxPanel extends JPanel implements MouseListener
                 ((c==0 || c==MYSTERY_BOX_GRID_SIZE+1)&&(r>0 && r<=MYSTERY_BOX_GRID_SIZE));
     }
 
-
+    /**
+     * Tells all the MysteryBoxes that they should show the ball, if they have one; activates "revealedMode" and plays
+     * a sound.
+     */
     public void revealAllBalls()
     {
         for (int r = 1; r <= MYSTERY_BOX_GRID_SIZE; r++)
@@ -176,6 +178,10 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         soundPlayer.playSound("Reveal.wav");
     }
 
+    /**
+     * resets the board, hiding content on edgeBoxes, re-randomizing balls and hiding them, resetting the latestLabel to
+     * "A," resetting the shot count to zero, clearing the "revealedMode," and playing a sound.
+     */
     public void reset()
     {
 
@@ -205,7 +211,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             }
             ((MysteryBox) myGrid[r1][c1]).setHasBall(true);
         }
-        numGuesses = 0;
+        numShots = 0;
         revealedMode = false;
         repaint();
         soundPlayer.playSound("Reset.wav");
@@ -218,7 +224,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         super.paintComponent(g);
 
         g.setColor(Color.BLACK);
-        g.drawString("Number of Shots Taken: "+numGuesses, LEFT_MARGIN, TOP_MARGIN-10);
+        g.drawString("Number of Shots Taken: "+ numShots, LEFT_MARGIN, TOP_MARGIN-10);
 
         if (revealedMode)
         {
@@ -226,10 +232,137 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             g.fillRect(LEFT_MARGIN-3, TOP_MARGIN-3, (MYSTERY_BOX_GRID_SIZE+2)*BlackBoxCell.CELL_SIZE+6, (MYSTERY_BOX_GRID_SIZE+2)*BlackBoxCell.CELL_SIZE+6);
         }
 
+        // now draw all the boxes.
         for (int i=0; i<MYSTERY_BOX_GRID_SIZE+2; i++)
             for (int j=0; j<MYSTERY_BOX_GRID_SIZE+2; j++)
                 if (myGrid[i][j] != null)
                     myGrid[i][j].drawSelf(g);
+    }
+
+    /**
+     * toggles the Pencilled/blank state of the MysteryBox at location (r, c) and plays a sound.
+     * precondition: the item of myGrid at (r,c) is a MysteryBox.
+     * @param r - row
+     * @param c - column
+     */
+    public void togglePencilledStatus(int r, int c)
+    {
+        if (myGrid[r][c].getStatus() == MysteryBox.STATUS_BLANK)
+            myGrid[r][c].setStatus(MysteryBox.STATUS_PENCILLED);
+        else
+            myGrid[r][c].setStatus(MysteryBox.STATUS_BLANK);
+        soundPlayer.playSound("Hmm.wav");
+    }
+
+    /**
+     * The user has just clicked on an EdgeBox. If it is a blank edgebox, then fire a shot inward from this edgeBox, see
+     * where it comes out (if at all) and mark this edgebox (and the edgebox where it exited, if different); play a
+     * sound and increment the number of shots.
+     * Precondition: the box in myGrid at startPos is an EdgeBox.
+     * @param startPos - the (r, c) of the clicked EdgeBox.
+     */
+    public void processShot(int[] startPos)
+    {
+
+        // if this is an edgeCell that already is showing something, then bail out now.
+        if (myGrid[startPos[0]][startPos[1]].getStatus() != BlackBoxCell.STATUS_BLANK)
+            return;
+
+        // identify the initial direction of movement for this shot, based on which edge of the board this is.
+        int direction;
+        if (startPos[0]==0) // top edge
+            direction = DIRECTION_DOWN;
+        else if (startPos[0]==MYSTERY_BOX_GRID_SIZE+1) // bottom edge
+            direction = DIRECTION_UP;
+        else if (startPos[1]==0) // left edge
+            direction = DIRECTION_RIGHT;
+        else // right edge
+            direction = DIRECTION_LEFT;
+
+
+        numShots++;
+        int[] exitPos = findExitPoint(startPos,direction);
+
+        if (exitPos == null) // if it didn't exit, that means we hit a ball.
+        {
+            myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_HIT);
+            soundPlayer.playSound("Punch.wav");
+        }
+        else if (startPos[0] == exitPos[0] && startPos[1] == exitPos[1]) // if it came out the same place it went in...
+        {
+            myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_REFLECT);
+            soundPlayer.playSound("EnergyBounce.wav");
+        }
+        else // if we have a distinct exit point from the entry point.
+        {
+            myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_LABEL);
+            ((EdgeBox) myGrid[startPos[0]][startPos[1]]).setMyLabel(String.valueOf(latestLabel));
+            myGrid[exitPos[0]][exitPos[1]].setStatus(EdgeBox.STATUS_LABEL);
+            ((EdgeBox) myGrid[exitPos[0]][exitPos[1]]).setMyLabel(String.valueOf(latestLabel));
+            soundPlayer.playSound("Chirp.wav");
+            latestLabel++;
+        }
+    }
+
+    /**
+     * A shot is being fired into the grid of Mystery boxes from the edgeBox at startPos, and this method will return
+     * the (r,c) of the edgebox where it exits the grid, if any.
+     * @param startPos - the (r,c) of the edgebox where the shot starts.
+     * @param dir - the direction the shot is initially moving, one of DIRECTION_RIGHT, DIRECTION_DOWN, DIRECTION_LEFT,
+     *            or DIRECTION_UP.
+     * @return - a 2-element array of (r, c) for the EdgeBox where the shot exits, or null, if the shot hit a ball
+     * head on.
+     */
+    public int[] findExitPoint(int[] startPos, int dir)
+    {
+        // p and d are the location of the shot - they change over the course of this method, but the pos and dir don't.
+        int[] p = startPos;
+        int d = dir;
+
+        // TODO: write this method:
+
+        // do the following until you either hit a ball or exit the grid:
+        //     1) Check whether the space in front of you has a ball. If so, return null.
+        //     2) Check whether the space in front-right of you has a ball. If so...
+        //           a) turn left in place.
+        //           b) Skip to step 5.
+        //     3) Check whether the space in front-left of you has a ball. If so...
+        //           a) turn right in place.
+        //           b) Skip to step 5.
+        //     4) Move forwards one space.
+        //     5) If p holds an edgebox, you've exited the mysterybox area, so return p.
+
+        while(true)
+        {
+
+            int[] frontPoint = getPositionInFrontOf(p,d);
+            if (myGrid[frontPoint[0]][frontPoint[1]] instanceof EdgeBox)
+                return frontPoint;
+            if (((MysteryBox)myGrid[frontPoint[0]][frontPoint[1]]).hasBall())
+                return null; // it's a hit!
+
+            int[] rightFrontPoint = getPositionFrontRightOf(p,d);
+            if (isMysteryBox(rightFrontPoint)&&((MysteryBox)myGrid[rightFrontPoint[0]][rightFrontPoint[1]]).hasBall())
+            {
+                d = turnLeft(d);
+            }
+            else
+            {
+                int[] leftFrontPoint = getPositionFrontLeftOf(p, d);
+                if (isMysteryBox(leftFrontPoint) && ((MysteryBox) myGrid[leftFrontPoint[0]][leftFrontPoint[1]]).hasBall())
+                {
+                    d = turnRight(d);
+
+                } else
+                {
+                    p = frontPoint;
+                }
+            }
+            if (! isMysteryBox(p))
+                return p;
+
+            ((MysteryBox)myGrid[p[0]][p[1]]).setStatus(MysteryBox.STATUS_DEBUG_SHOW);
+        }
     }
 
     @Override
@@ -247,105 +380,34 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     @Override
     public void mouseReleased(MouseEvent e)
     {
-        if (revealedMode)
+        if (revealedMode) // ignore mouse in this panel if the balls are revealed.
             return;
+
+        // find equivalent cell indexes for this mouse click. So r and c are not pixel locations, but indicators of
+        //  which row and column are being clicked.
         int r = (e.getY()- TOP_MARGIN)/BlackBoxCell.CELL_SIZE;
         int c = (e.getX()- LEFT_MARGIN)/BlackBoxCell.CELL_SIZE;
+
+        // check whether the click happened outside fo the grid.
         if (r<0 || r>MYSTERY_BOX_GRID_SIZE+1 || c<0 || c>MYSTERY_BOX_GRID_SIZE+1)
             return;
+
         if (isMysteryBox(r,c))
         {
-            if (myGrid[r][c].getStatus() == MysteryBox.STATUS_BLANK)
-                myGrid[r][c].setStatus(MysteryBox.STATUS_PENCILLED);
-            else
-                myGrid[r][c].setStatus(MysteryBox.STATUS_BLANK);
-            soundPlayer.playSound("Hmm.wav");
+            togglePencilledStatus(r,c);
         }
-        else if (((r>0)&&(r<MYSTERY_BOX_GRID_SIZE+1))||((c>0))&&(c<MYSTERY_BOX_GRID_SIZE+1)) // is this an edge box? (eliminating corners)
+        else if (isEdgeBox(r,c))
         {
             int[] startPos = {r,c};
-            int direction;
-
-            if (r==0) // top edge
-                direction = DIRECTION_DOWN;
-            else if (r==MYSTERY_BOX_GRID_SIZE+1) // bottom edge
-                direction = DIRECTION_UP;
-            else if (c==0) // left edge
-                direction = DIRECTION_RIGHT;
-            else // right edge
-                direction = DIRECTION_LEFT;
 
 
-            processShot(startPos, direction);
+            processShot(startPos);
         }
 
         repaint();
     }
 
-    public void processShot(int[] startPos, int dir)
-    {
-        if (myGrid[startPos[0]][startPos[1]].getStatus() != BlackBoxCell.STATUS_BLANK)
-            return;
-        numGuesses++;
-        int[] exitPos = findExitPoint(startPos,dir);
 
-        if (exitPos == null)
-        {
-            myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_HIT);
-            soundPlayer.playSound("Punch.wav");
-        }
-        else if (startPos[0] == exitPos[0] && startPos[1] == exitPos[1])
-        {
-            myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_REFLECT);
-            soundPlayer.playSound("EnergyBounce.wav");
-        }
-        else
-        {
-            myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_LABEL);
-            ((EdgeBox) myGrid[startPos[0]][startPos[1]]).setMyLabel(String.valueOf(latestLabel));
-            myGrid[exitPos[0]][exitPos[1]].setStatus(EdgeBox.STATUS_LABEL);
-            ((EdgeBox) myGrid[exitPos[0]][exitPos[1]]).setMyLabel(String.valueOf(latestLabel));
-            soundPlayer.playSound("Chirp.wav");
-            latestLabel++;
-        }
-    }
-
-    public int[] findExitPoint(int[] startPos, int dir)
-    {
-        int[] p = startPos;
-        int d = dir;
-        while(true)
-        {
-            int[] frontPoint = getPositionInFrontOf(p,d);
-            if (myGrid[frontPoint[0]][frontPoint[1]] instanceof EdgeBox)
-                return frontPoint;
-            if (((MysteryBox)myGrid[frontPoint[0]][frontPoint[1]]).hasBall())
-                return null; // it's a hit!
-
-            int[] rightFrontPoint = getPositionFrontRightOf(p,d);
-            if (isMysteryBox(rightFrontPoint)&&((MysteryBox)myGrid[rightFrontPoint[0]][rightFrontPoint[1]]).hasBall())
-            {
-                d = turnLeft(d);
-                if (!isMysteryBox(p))
-                    return p;
-                continue;
-            }
-
-            int[] leftFrontPoint = getPositionFrontLeftOf(p,d);
-            if (isMysteryBox(leftFrontPoint)&&((MysteryBox)myGrid[leftFrontPoint[0]][leftFrontPoint[1]]).hasBall())
-            {
-                d = turnRight(d);
-                if (!isMysteryBox(p))
-                    return p;
-                continue;
-            }
-
-            p = frontPoint;
-            if (! isMysteryBox(p))
-                return p;
-            //((MysteryBox)myGrid[p[0]][p[1]]).setStatus(MysteryBox.STATUS_DEBUG_SHOW);
-        }
-    }
 
     @Override
     public void mouseEntered(MouseEvent e)
