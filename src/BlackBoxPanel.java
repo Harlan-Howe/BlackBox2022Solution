@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 
 public class BlackBoxPanel extends JPanel implements MouseListener
 {
@@ -10,9 +11,12 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     private char latestLabel;
     private int numGuesses;
     private boolean revealedMode;
+    private SoundPlayer soundPlayer;
 
     private final int LEFT_MARGIN = 100;
     private final int TOP_MARGIN = 100;
+
+    private final int NUM_BALLS = 5;
 
     private final int DIRECTION_RIGHT = 0;
     private final int DIRECTION_DOWN = 1;
@@ -23,12 +27,20 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     private final int[][] DELTAS = {{0,1},{1,0},{0,-1},{-1,0}};
 
 
+
+
     public BlackBoxPanel()
     {
         super();
         setBackground(Color.LIGHT_GRAY);
         addMouseListener(this);
-
+        soundPlayer = new SoundPlayer();
+        soundPlayer.loadSound("EnergyBounce.wav"); // Energy Bounce by "magnuswalker" at https://freesound.org/s/523088/ shared via Creative Commons
+        soundPlayer.loadSound("Punch.wav"); // "Martial arts fast punch" at https://mixkit.co/free-sound-effects/
+        soundPlayer.loadSound("Chirp.wav"); // "Retro game notification" at https://mixkit.co/free-sound-effects/
+        soundPlayer.loadSound("Hmm.wav"); // Hmm sound by "DAN2008" at https://freesound.org/s/165011/ shared via Creative Commons
+        soundPlayer.loadSound("Reveal.wav"); // Reveal sound by "GameAudio" at https://freesound.org/s/220171/ shared via Creative Commons
+        soundPlayer.loadSound("Reset.wav"); // Reset sound by "Wdomino" at https://freesound.org/s/508575/ shared via Creative Commons
         myGrid = new BlackBoxCell[10][10];
 
         for (int i=1; i<=8; i++)
@@ -85,6 +97,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
                 ((MysteryBox)myGrid[r][c]).setShouldShowBall(true);
         revealedMode = true;
         repaint();
+        soundPlayer.playSound("Reveal.wav");
     }
 
     public void reset()
@@ -105,7 +118,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
                 else
                     ((EdgeBox) myGrid[r][c]).setMyLabel("");
             }
-        for (int i=0; i<4; i++)
+        for (int i=0; i<NUM_BALLS; i++)
         {
             int r1 = (int) (8 * Math.random() + 1);
             int c1 = (int) (8 * Math.random() + 1);
@@ -119,7 +132,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         numGuesses = 0;
         revealedMode = false;
         repaint();
-
+        soundPlayer.playSound("Reset.wav");
     }
 
     @Override
@@ -165,11 +178,13 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         if (r<0 || r>9 || c<0 || c>9)
             return;
         if (isMysteryBox(r,c))
+        {
             if (myGrid[r][c].getStatus() == MysteryBox.STATUS_BLANK)
                 myGrid[r][c].setStatus(MysteryBox.STATUS_PENCILLED);
             else
                 myGrid[r][c].setStatus(MysteryBox.STATUS_BLANK);
-
+            soundPlayer.playSound("Hmm.wav");
+        }
         else if (((r>0)&&(r<9))||((c>0))&&(c<9)) // is this an edge box? (eliminating corners)
         {
             int[] startPos = {r,c};
@@ -201,10 +216,12 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         if (exitPos == null)
         {
             myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_HIT);
+            soundPlayer.playSound("Punch.wav");
         }
         else if (startPos[0] == exitPos[0] && startPos[1] == exitPos[1])
         {
             myGrid[startPos[0]][startPos[1]].setStatus(EdgeBox.STATUS_REFLECT);
+            soundPlayer.playSound("EnergyBounce.wav");
         }
         else
         {
@@ -212,7 +229,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             ((EdgeBox) myGrid[startPos[0]][startPos[1]]).setMyLabel(String.valueOf(latestLabel));
             myGrid[exitPos[0]][exitPos[1]].setStatus(EdgeBox.STATUS_LABEL);
             ((EdgeBox) myGrid[exitPos[0]][exitPos[1]]).setMyLabel(String.valueOf(latestLabel));
-
+            soundPlayer.playSound("Chirp.wav");
             latestLabel++;
         }
     }

@@ -5,6 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Chirp.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EnergyBounce.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Hmm.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Punch.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Reset.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Reveal.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SoundPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BlackBoxPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxPanel.java" afterDir="false" />
     </list>
@@ -41,6 +48,12 @@
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="BlackBoxRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BlackBoxRunner" />
@@ -211,7 +224,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658426351602</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added &quot;Revealed mode&quot; - graphical indicator toggled by &quot;reveal&quot; &amp; &quot;reset&quot; buttons.">
+      <created>1658435615947</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1658435615947</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Revealed Mode precludes clicking on edges or mystery squares. Changed GUI cue from pink to light blue.">
+      <created>1658435767504</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1658435767504</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -236,6 +263,8 @@
     <MESSAGE value="Fixed error: reset was not removing existing balls; just adding more." />
     <MESSAGE value="moved latestLabel = 'A' from constructor to reset, so that it resets on replay." />
     <MESSAGE value="Adjusted margins.&#10;Added number of shots taken counter and indicator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusted margins.&#10;Added number of shots taken counter and indicator" />
+    <MESSAGE value="Added &quot;Revealed mode&quot; - graphical indicator toggled by &quot;reveal&quot; &amp; &quot;reset&quot; buttons." />
+    <MESSAGE value="Revealed Mode precludes clicking on edges or mystery squares. Changed GUI cue from pink to light blue." />
+    <option name="LAST_COMMIT_MESSAGE" value="Revealed Mode precludes clicking on edges or mystery squares. Changed GUI cue from pink to light blue." />
   </component>
 </project>
