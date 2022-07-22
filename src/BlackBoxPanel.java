@@ -56,8 +56,16 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         }
 
         reset();
+    }
 
+    public int turnLeft(int dir)
+    {
+        return (dir+3)%4;
+    }
 
+    public int turnRight(int dir)
+    {
+        return (dir+1)%4;
     }
 
 
@@ -71,12 +79,12 @@ public class BlackBoxPanel extends JPanel implements MouseListener
 
     public int[] getPositionFrontRightOf(int[] pos, int direction)
     {
-        return getPositionInFrontOf(getPositionInFrontOf(pos,direction),(direction+1)%4);
+        return getPositionInFrontOf(getPositionInFrontOf(pos,direction),turnRight(direction));
     }
 
     public int[] getPositionFrontLeftOf(int[] pos, int direction)
     {
-        return getPositionInFrontOf(getPositionInFrontOf(pos, direction),(direction+3)%4);
+        return getPositionInFrontOf(getPositionInFrontOf(pos, direction),turnLeft(direction));
     }
 
 
@@ -249,7 +257,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             int[] rightFrontPoint = getPositionFrontRightOf(p,d);
             if (isMysteryBox(rightFrontPoint)&&((MysteryBox)myGrid[rightFrontPoint[0]][rightFrontPoint[1]]).hasBall())
             {
-                d = (d+3)%4;
+                d = turnLeft(d);
                 if (!isMysteryBox(p))
                     return p;
                 continue;
@@ -257,7 +265,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             int[] leftFrontPoint = getPositionFrontLeftOf(p,d);
             if (isMysteryBox(leftFrontPoint)&&((MysteryBox)myGrid[leftFrontPoint[0]][leftFrontPoint[1]]).hasBall())
             {
-                d = (d+1)%4;
+                d = turnRight(d);
                 if (!isMysteryBox(p))
                     return p;
                 continue;
