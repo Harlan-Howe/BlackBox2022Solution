@@ -217,6 +217,22 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         soundPlayer.playSound("Reset.wav");
     }
 
+    public void resetWithTestData()
+    {
+        reset();
+        for (int i=1; i<=MYSTERY_BOX_GRID_SIZE; i++)
+            for (int j=1; j<=MYSTERY_BOX_GRID_SIZE; j++)
+                ((MysteryBox)myGrid[i][j]).setHasBall(false);
+
+        ((MysteryBox)myGrid[1][1]).setHasBall(true);
+        ((MysteryBox)myGrid[1][2]).setHasBall(true);
+        ((MysteryBox)myGrid[1][6]).setHasBall(true);
+        ((MysteryBox)myGrid[3][6]).setHasBall(true);
+        ((MysteryBox)myGrid[6][2]).setHasBall(true);
+        repaint();
+
+    }
+
     @Override
     public void paintComponent(Graphics g)
     {
@@ -362,7 +378,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             if (! isMysteryBox(p))
                 return p;
 
-            ((MysteryBox)myGrid[p[0]][p[1]]).setStatus(MysteryBox.STATUS_DEBUG_SHOW);
+            //((MysteryBox)myGrid[p[0]][p[1]]).setStatus(MysteryBox.STATUS_DEBUG_SHOW);
         }
     }
 

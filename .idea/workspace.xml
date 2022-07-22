@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlackBoxFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlackBoxPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,11 +281,17 @@
       <option name="project" value="LOCAL" />
       <updated>1658514983179</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Replaced revealButton and replaceButton with a single, toggling replace/reset button.">
+      <created>1658517308700</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1658517308700</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Wrote Constructor &amp; paintComponent methods." />
     <MESSAGE value="Adjusteded CELL_SIZE to 60 pixels" />
     <MESSAGE value="Detecting clicks on board; toggling pencil status on Mystery boxes clicked." />
     <MESSAGE value="Changed constants to static variables so outside classes could see them." />
@@ -310,6 +316,7 @@
     <MESSAGE value="More documentation. &#10;Removed code to see whether we were in bounds of board from mouseReleased... it wasn't needed." />
     <MESSAGE value="Documented the variables and constants." />
     <MESSAGE value="Moved sound files into Sounds subfolder in src. Updated SoundPlayer to automatically look in that folder for those files. Sounds still referenced by filename, without that folder prefix." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved sound files into Sounds subfolder in src. Updated SoundPlayer to automatically look in that folder for those files. Sounds still referenced by filename, without that folder prefix." />
+    <MESSAGE value="Replaced revealButton and replaceButton with a single, toggling replace/reset button." />
+    <option name="LAST_COMMIT_MESSAGE" value="Replaced revealButton and replaceButton with a single, toggling replace/reset button." />
   </component>
 </project>
