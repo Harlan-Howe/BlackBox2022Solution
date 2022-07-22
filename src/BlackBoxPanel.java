@@ -331,6 +331,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         //           b) Skip to step 5.
         //     4) Move forwards one space.
         //     5) If p holds an edgebox, you've exited the mysterybox area, so return p.
+        //     6) DEBUGGING only: ((MysteryBox)myGrid[p[0]][p[1]]).setStatus(MysteryBox.STATUS_DEBUG_SHOW);
 
         while(true)
         {
@@ -368,16 +369,21 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     @Override
     public void mouseClicked(MouseEvent e)
     {
-
+        // intentionally blank. This method gets called if the user lets go of the mouse at the same location as he/she
+        //     pressed it.
     }
 
     @Override
     public void mousePressed(MouseEvent e)
     {
-
+        // intentionally blank. This method gets called if the user intially presses the mouse inside the panel.
     }
 
     @Override
+    /**
+     * The user just let go of the mouse inside the panel. If it is on a MysteryBox, toggle it's pencil status; otherwise
+     * if it is an edgeBox, process the shot from that edge.
+     */
     public void mouseReleased(MouseEvent e)
     {
         if (revealedMode) // ignore mouse in this panel if the balls are revealed.
@@ -388,9 +394,6 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         int r = (e.getY()- TOP_MARGIN)/BlackBoxCell.CELL_SIZE;
         int c = (e.getX()- LEFT_MARGIN)/BlackBoxCell.CELL_SIZE;
 
-        // check whether the click happened outside fo the grid.
-        if (r<0 || r>MYSTERY_BOX_GRID_SIZE+1 || c<0 || c>MYSTERY_BOX_GRID_SIZE+1)
-            return;
 
         if (isMysteryBox(r,c))
         {
@@ -412,12 +415,12 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     @Override
     public void mouseEntered(MouseEvent e)
     {
-
+        // intentionally blank. The user just moved the mouse into this panel frome elsewhere.
     }
 
     @Override
     public void mouseExited(MouseEvent e)
     {
-
+        // intentionally blank. The user just moved the mouse out of this panel.
     }
 }
