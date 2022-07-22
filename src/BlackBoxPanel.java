@@ -5,13 +5,14 @@ import java.awt.event.MouseListener;
 
 public class BlackBoxPanel extends JPanel implements MouseListener
 {
-
+    // variables
     private BlackBoxCell[][] myGrid;
     private char latestLabel;
     private int numShots;
     private boolean revealedMode;
     private SoundPlayer soundPlayer;
 
+    // constants
     private final int LEFT_MARGIN = 100;
     private final int TOP_MARGIN = 100;
 
@@ -22,11 +23,10 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     private final int DIRECTION_DOWN = 1;
     private final int DIRECTION_LEFT = 2;
     private final int DIRECTION_UP = 3;
-
     //                               RGT   DWN    LFT    UP
     private final int[][] DELTAS = {{0,1},{1,0},{0,-1},{-1,0}};
-
-
+    // Note: the size (in pixels) of the cells is a constant in BlackBoxCell, so you can refer to it as
+    //        BlackBoxCell.CELL_SIZE.
 
 
     public BlackBoxPanel()
@@ -366,18 +366,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e)
-    {
-        // intentionally blank. This method gets called if the user lets go of the mouse at the same location as he/she
-        //     pressed it.
-    }
 
-    @Override
-    public void mousePressed(MouseEvent e)
-    {
-        // intentionally blank. This method gets called if the user intially presses the mouse inside the panel.
-    }
 
     @Override
     /**
@@ -394,7 +383,6 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         int r = (e.getY()- TOP_MARGIN)/BlackBoxCell.CELL_SIZE;
         int c = (e.getX()- LEFT_MARGIN)/BlackBoxCell.CELL_SIZE;
 
-
         if (isMysteryBox(r,c))
         {
             togglePencilledStatus(r,c);
@@ -402,15 +390,27 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         else if (isEdgeBox(r,c))
         {
             int[] startPos = {r,c};
-
-
             processShot(startPos);
         }
-
         repaint();
     }
 
+    // --------------------------------- UNUSED Methods.
+    // We are required to have these methods to be a MouseListener, but they don't have to _do_ anything, so we leave
+    //  them blank. But being a MouseListener is what allows us to receive events that might get caught by the previous
+    //  method, mouseReleased(). So these extra, blank methods are the price we pay for that functionality.
+    @Override
+    public void mouseClicked(MouseEvent e)
+    {
+        // intentionally blank. This method gets called if the user lets go of the mouse at the same location as he/she
+        //     pressed it.
+    }
 
+    @Override
+    public void mousePressed(MouseEvent e)
+    {
+        // intentionally blank. This method gets called if the user intially presses the mouse inside the panel.
+    }
 
     @Override
     public void mouseEntered(MouseEvent e)
