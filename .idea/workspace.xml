@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Chirp.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EnergyBounce.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Hmm.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Punch.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Reset.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Reveal.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SoundPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BlackBoxPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxPanel.java" afterDir="false" />
     </list>
@@ -238,7 +231,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658435767504</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Added sounds, including a SoundPlayer class that we can reuse for other projects.">
+      <created>1658505603989</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1658505603989</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Refactored methods for turnLeft and turnRight">
+      <created>1658505786384</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1658505786384</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -265,6 +272,8 @@
     <MESSAGE value="Adjusted margins.&#10;Added number of shots taken counter and indicator" />
     <MESSAGE value="Added &quot;Revealed mode&quot; - graphical indicator toggled by &quot;reveal&quot; &amp; &quot;reset&quot; buttons." />
     <MESSAGE value="Revealed Mode precludes clicking on edges or mystery squares. Changed GUI cue from pink to light blue." />
-    <option name="LAST_COMMIT_MESSAGE" value="Revealed Mode precludes clicking on edges or mystery squares. Changed GUI cue from pink to light blue." />
+    <MESSAGE value="Added sounds, including a SoundPlayer class that we can reuse for other projects." />
+    <MESSAGE value="Refactored methods for turnLeft and turnRight" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored methods for turnLeft and turnRight" />
   </component>
 </project>
