@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class BlackBoxFrame extends JFrame implements ActionListener
 {
     private BlackBoxPanel myPanel;
-    private JButton revealButton, resetButton;
+    private JButton revealResetButton;
 
     public BlackBoxFrame()
     {
@@ -27,13 +27,10 @@ public class BlackBoxFrame extends JFrame implements ActionListener
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
-        revealButton = new JButton("Reveal");
-        revealButton.addActionListener(this);
-        panel.add(revealButton);
+        revealResetButton = new JButton("Reveal");
+        revealResetButton.addActionListener(this);
+        panel.add(revealResetButton);
 
-        resetButton = new JButton("Reset");
-        resetButton.addActionListener(this);
-        panel.add(resetButton);
 
         return panel;
     }
@@ -41,13 +38,19 @@ public class BlackBoxFrame extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if (e.getSource() == revealButton)
+        if (e.getSource() == revealResetButton)
         {
-            myPanel.revealAllBalls();
+            if (revealResetButton.getText().equals("Reveal"))
+            {
+                myPanel.revealAllBalls();
+                revealResetButton.setText("Reset");
+            }
+            else
+            {
+                myPanel.reset();
+                revealResetButton.setText("Reveal");
+            }
         }
-        if (e.getSource() == resetButton)
-        {
-            myPanel.reset();
-        }
+
     }
 }
