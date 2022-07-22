@@ -22,7 +22,7 @@ public class SoundPlayer implements LineListener
     {
         try
         {
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(soundFilename);
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Sounds/"+soundFilename);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(inputStream);
             Clip audioClip = AudioSystem.getClip();
             audioClip.addLineListener(this);

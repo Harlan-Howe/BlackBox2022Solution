@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/BlackBoxPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxPanel.java" afterDir="false" />
+    <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="Documented the variables and constants.">
+      <change beforePath="$PROJECT_DIR$/src/Chirp.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sounds/Chirp.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EnergyBounce.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sounds/EnergyBounce.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hmm.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sounds/Hmm.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Punch.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sounds/Punch.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reset.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sounds/Reset.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reveal.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sounds/Reveal.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SoundPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +49,7 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/Sounds" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -265,11 +272,17 @@
       <option name="project" value="LOCAL" />
       <updated>1658514261436</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Documented the variables and constants.">
+      <created>1658514558234</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1658514558234</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Wrote Constructor, drawSelf, and get/set methods" />
     <MESSAGE value="Removed extra black color call that overrode gray in default drawSelf behavior." />
     <MESSAGE value="Wrote Constructor &amp; paintComponent methods." />
     <MESSAGE value="Adjusteded CELL_SIZE to 60 pixels" />
@@ -294,6 +307,7 @@
     <MESSAGE value="Added some documentation for methods;&#10;Added isEdgeBox - will refactor to use this." />
     <MESSAGE value="More documentation. &#10;Cleaned up logic in the findExitPoint method." />
     <MESSAGE value="More documentation. &#10;Removed code to see whether we were in bounds of board from mouseReleased... it wasn't needed." />
-    <option name="LAST_COMMIT_MESSAGE" value="More documentation. &#10;Removed code to see whether we were in bounds of board from mouseReleased... it wasn't needed." />
+    <MESSAGE value="Documented the variables and constants." />
+    <option name="LAST_COMMIT_MESSAGE" value="Documented the variables and constants." />
   </component>
 </project>
