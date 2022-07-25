@@ -11,6 +11,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     private int numShots;
     private boolean revealedMode;
     private SoundPlayer soundPlayer;
+    private boolean firstRun;
 
     // constants
     private final int LEFT_MARGIN = 100;
@@ -19,10 +20,10 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     private final int NUM_BALLS = 5;
     private final int MYSTERY_BOX_GRID_SIZE = 8;
 
-    private final int DIRECTION_RIGHT = 0;
-    private final int DIRECTION_DOWN = 1;
-    private final int DIRECTION_LEFT = 2;
-    private final int DIRECTION_UP = 3;
+    public static final int DIRECTION_RIGHT = 0;
+    public static final int DIRECTION_DOWN = 1;
+    public static final int DIRECTION_LEFT = 2;
+    public static final int DIRECTION_UP = 3;
     //                               RGT   DWN    LFT    UP
     private final int[][] DELTAS = {{0,1},{1,0},{0,-1},{-1,0}};
     // Note: the size (in pixels) of the cells is a constant in BlackBoxCell, so you can refer to it as
@@ -35,6 +36,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         setBackground(Color.LIGHT_GRAY);
         addMouseListener(this);
         loadSounds();
+        firstRun = true;
         myGrid = new BlackBoxCell[MYSTERY_BOX_GRID_SIZE+2][MYSTERY_BOX_GRID_SIZE+2];
 
         for (int i=1; i<=MYSTERY_BOX_GRID_SIZE; i++)
@@ -184,6 +186,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
      */
     public void reset()
     {
+        System.out.println("Resetting.");
 
         latestLabel = 'A';
         for (int r=0; r<=MYSTERY_BOX_GRID_SIZE+1; r++)
@@ -214,7 +217,9 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         numShots = 0;
         revealedMode = false;
         repaint();
-        soundPlayer.playSound("Reset.wav");
+        if (!firstRun)
+            soundPlayer.playSound("Reset.wav");
+        firstRun = false;
     }
 
     public void resetWithTestData()
