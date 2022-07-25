@@ -16,7 +16,7 @@ public class BlackBoxFrame extends JFrame implements ActionListener
         getContentPane().setLayout(new BorderLayout());
         myPanel = new BlackBoxPanel();
         getContentPane().add(myPanel, BorderLayout.CENTER);
-        getContentPane().add(createButtonPanel(), BorderLayout.SOUTH);
+        getContentPane().add(createButtonPanel(), BorderLayout.NORTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 

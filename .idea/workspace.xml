@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/BlackBoxPanelTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BlackBoxFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BlackBoxPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +64,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BlackBoxPanelTest">
+  <component name="RunManager" selected="Application.BlackBoxRunner">
     <configuration name="BlackBoxRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BlackBoxRunner" />
       <module name="BlackBox2022" />
@@ -83,8 +83,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BlackBoxPanelTest" />
         <item itemvalue="Application.BlackBoxRunner" />
+        <item itemvalue="JUnit.BlackBoxPanelTest" />
       </list>
     </recent_temporary>
   </component>
@@ -328,11 +328,17 @@
       <option name="project" value="LOCAL" />
       <updated>1658780988354</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Wrote tests for BlackBox for students....">
+      <created>1658784158987</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1658784158987</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed constants to static variables so outside classes could see them." />
     <MESSAGE value="Added directional Constants and deltas" />
     <MESSAGE value="Added button panel with reveal button." />
     <MESSAGE value="Added hasBall and shouldShowBall flags, and updated paintComponent to reflect this. (Known error paintComponent isn't checking hasBall.)&#10;Repurposed STATUS_REVEALED to be STATUS_DEBUG." />
@@ -357,6 +363,7 @@
     <MESSAGE value="Replaced revealButton and replaceButton with a single, toggling replace/reset button." />
     <MESSAGE value="added resetWithTestData() method for testing." />
     <MESSAGE value="Silenced reset on first running program." />
-    <option name="LAST_COMMIT_MESSAGE" value="Silenced reset on first running program." />
+    <MESSAGE value="Wrote tests for BlackBox for students...." />
+    <option name="LAST_COMMIT_MESSAGE" value="Wrote tests for BlackBox for students...." />
   </component>
 </project>
