@@ -186,7 +186,6 @@ public class BlackBoxPanel extends JPanel implements MouseListener
      */
     public void reset()
     {
-        System.out.println("Resetting.");
 
         latestLabel = 'A';
         for (int r=0; r<=MYSTERY_BOX_GRID_SIZE+1; r++)
