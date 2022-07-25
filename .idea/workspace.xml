@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b00443e-1f94-4dc3-816b-d4c0cb753243" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BlackBoxFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BlackBoxPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BlackBoxPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -335,12 +333,24 @@
       <option name="project" value="LOCAL" />
       <updated>1658784158987</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Moved button to north panel">
+      <created>1658784291810</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1658784291811</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Removed &quot;resetting&quot; message from reset...">
+      <created>1658784315292</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1658784315292</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added directional Constants and deltas" />
-    <MESSAGE value="Added button panel with reveal button." />
     <MESSAGE value="Added hasBall and shouldShowBall flags, and updated paintComponent to reflect this. (Known error paintComponent isn't checking hasBall.)&#10;Repurposed STATUS_REVEALED to be STATUS_DEBUG." />
     <MESSAGE value="Clicking on an edge cell now runs the path and updates that edge cell. Several new methods to perform this.&#10;Added a method &quot;revealAllBalls.&quot;" />
     <MESSAGE value="fixed error where all MysteryBoxes showed a ball regardless of hasBall flag." />
@@ -364,6 +374,8 @@
     <MESSAGE value="added resetWithTestData() method for testing." />
     <MESSAGE value="Silenced reset on first running program." />
     <MESSAGE value="Wrote tests for BlackBox for students...." />
-    <option name="LAST_COMMIT_MESSAGE" value="Wrote tests for BlackBox for students...." />
+    <MESSAGE value="Moved button to north panel" />
+    <MESSAGE value="Removed &quot;resetting&quot; message from reset..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed &quot;resetting&quot; message from reset..." />
   </component>
 </project>

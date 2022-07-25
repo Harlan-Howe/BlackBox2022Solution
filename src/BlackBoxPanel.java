@@ -12,6 +12,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     private boolean revealedMode;
     private SoundPlayer soundPlayer;
     private boolean firstRun;
+    private Font scoreFont;
 
     // constants
     private final int LEFT_MARGIN = 100;
@@ -37,6 +38,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         addMouseListener(this);
         loadSounds();
         firstRun = true;
+        scoreFont = new Font("Times",Font.PLAIN, 18);
         myGrid = new BlackBoxCell[MYSTERY_BOX_GRID_SIZE+2][MYSTERY_BOX_GRID_SIZE+2];
 
         for (int i=1; i<=MYSTERY_BOX_GRID_SIZE; i++)
@@ -244,7 +246,8 @@ public class BlackBoxPanel extends JPanel implements MouseListener
         super.paintComponent(g);
 
         g.setColor(Color.BLACK);
-        g.drawString("Number of Shots Taken: "+ numShots, LEFT_MARGIN, TOP_MARGIN-10);
+        g.setFont(scoreFont);
+        g.drawString("Number of Shots Taken: "+ numShots, LEFT_MARGIN, TOP_MARGIN-20);
 
         if (revealedMode)
         {
