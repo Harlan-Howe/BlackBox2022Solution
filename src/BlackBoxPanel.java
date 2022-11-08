@@ -394,7 +394,7 @@ public class BlackBoxPanel extends JPanel implements MouseListener
                 return p;
 
 
-            ((MysteryBox)myGrid[p[0]][p[1]]).setStatus(MysteryBox.STATUS_DEBUG_SHOW);
+            (myGrid[p[0]][p[1]]).setStatus(MysteryBox.STATUS_DEBUG_SHOW);
         }
     }
 
@@ -406,8 +406,8 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     {
         for (int i = 1; i <=MYSTERY_BOX_GRID_SIZE; i++)
             for (int j = 1; j <=MYSTERY_BOX_GRID_SIZE; j++)
-                if (((MysteryBox)myGrid[i][j]).getStatus() == MysteryBox.STATUS_DEBUG_SHOW)
-                    ((MysteryBox)myGrid[i][j]).setStatus(MysteryBox.STATUS_BLANK);
+                if ((myGrid[i][j]).getStatus() == MysteryBox.STATUS_DEBUG_SHOW)
+                    (myGrid[i][j]).setStatus(MysteryBox.STATUS_BLANK);
     }
 
     @Override
