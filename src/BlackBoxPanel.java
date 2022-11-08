@@ -169,6 +169,12 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     }
 
     /**
+     * checks whether the given row and column are within the light gray area of the grid (but not the corners)
+     * @param p = (row, column)
+     * @return - whether the item at p of the grid is an EdgeBox.
+     */
+    public boolean isEdgeBox(int[] p) { return isEdgeBox(p[0],p[1]);}
+    /**
      * Tells all the MysteryBoxes that they should show the ball, if they have one; activates "revealedMode" and plays
      * a sound.
      */
@@ -328,19 +334,21 @@ public class BlackBoxPanel extends JPanel implements MouseListener
     }
 
     /**
-     * A shot is being fired into the grid of Mystery boxes from the edgeBox at startPos, and this method will return
+     * A shot is being fired into the grid of Mystery boxes from the edgeBox at startingPosition, and this method will return
      * the (r,c) of the edgebox where it exits the grid, if any.
-     * @param startPos - the (r,c) of the edgebox where the shot starts.
-     * @param dir - the direction the shot is initially moving, one of DIRECTION_RIGHT, DIRECTION_DOWN, DIRECTION_LEFT,
+     * @param startingPosition - the (r,c) of the edgebox where the shot starts.
+     * @param direction - the direction the shot is initially moving, one of DIRECTION_RIGHT, DIRECTION_DOWN, DIRECTION_LEFT,
      *            or DIRECTION_UP.
      * @return - a 2-element array of (r, c) for the EdgeBox where the shot exits, or null, if the shot hit a ball
      * head on.
      */
-    public int[] findExitPoint(int[] startPos, int dir)
+    public int[] findExitPoint(int[] startingPosition, int direction)
     {
-        // p and d are the location of the shot - they change over the course of this method, but the pos and dir don't.
-        int[] p = startPos;
-        int d = dir;
+        // p and d are the location of the shot - they change over the course of this method, but the pos and direction don't.
+        int[] p = startingPosition;
+        int d = direction;
+
+        clear_all_debug_marks();
 
         // TODO: write this method:
 
@@ -385,11 +393,22 @@ public class BlackBoxPanel extends JPanel implements MouseListener
             if (! isMysteryBox(p))
                 return p;
 
-            //((MysteryBox)myGrid[p[0]][p[1]]).setStatus(MysteryBox.STATUS_DEBUG_SHOW);
+
+            ((MysteryBox)myGrid[p[0]][p[1]]).setStatus(MysteryBox.STATUS_DEBUG_SHOW);
         }
     }
 
-
+    /**
+     * reset all of the mystery boxes that have the green debug marks back to the blank status without disturbing
+     * any of the pencilled marks.
+     */
+    public void clear_all_debug_marks()
+    {
+        for (int i = 1; i <=MYSTERY_BOX_GRID_SIZE; i++)
+            for (int j = 1; j <=MYSTERY_BOX_GRID_SIZE; j++)
+                if (((MysteryBox)myGrid[i][j]).getStatus() == MysteryBox.STATUS_DEBUG_SHOW)
+                    ((MysteryBox)myGrid[i][j]).setStatus(MysteryBox.STATUS_BLANK);
+    }
 
     @Override
     /**
